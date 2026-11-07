@@ -124,5 +124,5 @@ rm -rf "$HOME/Applications/Agent Overlay.app"
 # Old state folders go last: a previous version of the app still running above could recreate them.
 rm -rf "$OLD/agent-overlay" "$OLD/agent-overlay-usage"
 
-echo "Done. Votive is running in your menu bar and will auto-start at login."
+echo "Done. Votive Dots is running in your menu bar and will auto-start at login."
 echo "Installed another agent later? Run: node Scripts/install-agents.js"

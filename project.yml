@@ -15,7 +15,7 @@ settings:
     ENABLE_HARDENED_RUNTIME: NO
     # --- Language / versioning ---
     SWIFT_VERSION: "5.9"
-    MARKETING_VERSION: "1.8.1"
+    MARKETING_VERSION: "1.8.2"
     CURRENT_PROJECT_VERSION: "1"
     # --- Universal (Apple Silicon + Intel) ---
     ARCHS: "$(ARCHS_STANDARD)"
@@ -34,16 +34,23 @@ targets:
       - path: Votive
     settings:
       base:
-        PRODUCT_NAME: "Votive"
+        # The public name, for the About panel and the app menu. The wrapper, executable and module keep the
+        # old name so that installs, the login item and scripts keep working.
+        PRODUCT_NAME: "Votive Dots"
+        WRAPPER_NAME: "Votive.app"
+        EXECUTABLE_NAME: "Votive"
+        PRODUCT_MODULE_NAME: "Votive"
         PRODUCT_BUNDLE_IDENTIFIER: dev.votive.Votive
         GENERATE_INFOPLIST_FILE: YES
+        # The public name. Votive.app, the executable and the bundle id stay as they are, so installs keep working.
+        INFOPLIST_KEY_CFBundleDisplayName: "Votive Dots"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         # Menu-bar-only accessory app: no Dock icon, no app menu.
         INFOPLIST_KEY_LSUIElement: YES
         INFOPLIST_KEY_LSApplicationCategoryType: "public.app-category.developer-tools"
         INFOPLIST_KEY_NSHumanReadableCopyright: "© 2026"
         # Lets the app raise the exact Terminal/iTerm tab of a clicked agent (one-time prompt).
-        INFOPLIST_KEY_NSAppleEventsUsageDescription: "Votive focuses the terminal window of the agent you click."
+        INFOPLIST_KEY_NSAppleEventsUsageDescription: "Votive Dots focuses the terminal window of the agent you click."
         COMBINE_HIDPI_IMAGES: YES
 
 schemes:

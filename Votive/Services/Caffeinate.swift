@@ -15,7 +15,7 @@ final class Caffeinate {
     static let shared = Caffeinate()
     static let didChange = Notification.Name("VotiveCaffeinateDidChange")
 
-    private let reason = "Votive: Caffeinate is on" as CFString
+    private let reason = "Votive Dots: Caffeinate is on" as CFString
     private var systemID = IOPMAssertionID(0)
     private var displayID = IOPMAssertionID(0)
 

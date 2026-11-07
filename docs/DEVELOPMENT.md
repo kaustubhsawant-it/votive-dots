@@ -89,7 +89,7 @@ cd votive
 ```
 
 `build.sh` prints the built `.app` path; `open` it directly, or run from Xcode after
-`xcodegen generate` (open `Votive.xcodeproj`, scheme `Votive`).
+`xcodegen generate` (open `Votive.xcodeproj`, scheme `Votive Dots`).
 
 Debug builds are ad-hoc signed the same way Release is (`CODE_SIGN_IDENTITY: "-"` in
 `project.yml`, applied to both `Debug` and `Release` configs under `settings.base`) — there is

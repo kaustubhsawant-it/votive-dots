@@ -7,7 +7,7 @@ Per-agent details (which events are hooked, manual setup for Goose, Cline, Amp a
 
 ## Install from a download (no Xcode needed)
 
-Get `Votive-<version>-mac.zip` from the [latest release](https://github.com/kaustubhsawant-it/votive/releases/latest),
+Get `Votive-Dots-<version>-mac.zip` from the [latest release](https://github.com/kaustubhsawant-it/votive-dots/releases/latest),
 unzip it, and in Terminal run `./Scripts/install.sh` from inside the unzipped folder. It needs only Node.js.
 Do not double-click `Votive.app`: it is ad-hoc signed and not notarized, so macOS refuses it. The installer
 does the same steps as a source install except that it builds nothing, clears the "downloaded from the
@@ -67,7 +67,7 @@ to re-run (idempotent):
    - the write is atomic and follows symlinks, so a symlinked config stays a symlink.
 
    **Codex:** Codex doesn't run a new hook until you trust it. Open Codex once and approve the
-   Votive hooks in `/hooks`; the installer prints a reminder.
+   Votive Dots hooks in `/hooks`; the installer prints a reminder.
 6. **Claude Code extras** (only when `~/.claude` exists or `claude` is on your `PATH`):
    - **Plan-usage status line.** Runs `Scripts/install-statusline.js`, which saves your current
      `statusLine` (if any) to `~/.votive/usage/wrapped.json` and points `statusLine` at
@@ -96,7 +96,7 @@ launch step, no login/logout required.
 
 ### Adding an agent later
 
-If you install another agent after Votive, wire it without rebuilding:
+If you install another agent after Votive Dots, wire it without rebuilding:
 
 ```sh
 node Scripts/install-agents.js                 # wire everything detected (already-wired agents are skipped)
@@ -109,13 +109,13 @@ node Scripts/install-agents.js --list          # show what's detected, change no
 
 The LaunchAgent (`dev.votive.Votive.plist`) sets `RunAtLoad` and a conditional `KeepAlive` — the app
 starts at every login and macOS relaunches it automatically if it crashes (a normal **Quit** stays
-quit until your next login, or until you open Votive again)
+quit until your next login, or until you open Votive Dots again)
 (`ProcessType: Interactive`, `LimitLoadToSessionType: Aqua`, so it only loads in a real GUI
 login session, never headless/SSH).
 
 ## Upgrading from Agent Overlay
 
-Votive is the new name of Agent Overlay. If you have the old one installed, pull the new source and
+Votive Dots is the new name of Agent Overlay. If you have the old one installed, pull the new source and
 run `./Scripts/install.sh` again. It moves `~/.agent-overlay/` to `~/.votive/` (a move, never a copy
 or a delete), leaves a link and thin scripts at the old names so agent sessions that are already
 running keep working until you restart them, points every agent's hooks and the Claude Code status
@@ -169,7 +169,7 @@ any event you should find a file named `<agent>--<session id>.json` in
 
 This:
 - unloads and removes the LaunchAgent and deletes `~/Applications/Votive.app`;
-- runs `node Scripts/install-agents.js --remove`, which removes only Votive's hook
+- runs `node Scripts/install-agents.js --remove`, which removes only Votive Dots' hook
   entries from every agent config it knows (whether or not the agent is still installed),
   backing up each file before changing it, and deletes the Copilot CLI hooks file and the
   OpenCode plugin;
@@ -206,7 +206,7 @@ terminal (see [DEVELOPMENT.md](DEVELOPMENT.md#debug-logging)) and watch stderr f
 
 **Codex sessions never show up.**
 Codex skips hooks it hasn't been told to trust. Open Codex, go to `/hooks`, and approve the
-Votive entries. Then start a new session.
+Votive Dots entries. Then start a new session.
 
 **A Cursor session shows up as Cursor, not Claude Code (or vice versa).**
 Cursor runs Claude Code's hooks by default. Events that come from Cursor are recognized by
@@ -245,14 +245,14 @@ one event first (send one prompt), and the agent's hook must be wired.
 Check whether the process is actually still alive — a `stopped` (red) row's process is gone,
 so there is no window to raise. A row with no known process opens its folder in Finder instead.
 For a live session that still won't focus, check System Settings → Privacy & Security → Automation, and
-confirm "Votive" is allowed to control Terminal or iTerm; if it isn't listed at all,
+confirm "Votive Dots" is allowed to control Terminal or iTerm; if it isn't listed at all,
 trigger the prompt again by clicking a row for a session hosted in that terminal.
 
 **No notification banners ever show up.**
 Expected on an ad-hoc-signed build much of the time — see the permissions table above.
 Automatic alerts are off by default: turn on **Settings → Alerts → Banner on every state
 change** and/or **Pop-up on every state change**. The pop-up needs no permission at all. If
-neither shows anything, check System Settings → Notifications → Votive isn't set to
+neither shows anything, check System Settings → Notifications → Votive Dots isn't set to
 "None".
 
 **A pop-up appears every time any session finishes or hits a problem.**

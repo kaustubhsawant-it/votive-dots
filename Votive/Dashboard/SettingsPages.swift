@@ -84,11 +84,11 @@ struct GeneralSettingsPage: View {
                         }
                     }))
                     .id(awakeTick)
-                LabeledContent("Votive's files") {
+                LabeledContent("Votive Dots' files") {
                     Button("Open ~/.votive") { NSWorkspace.shared.open(Paths.root) }.softButton()
                 }
             } header: { Text("This Mac") } footer: {
-                Text("Caffeinate keeps the Mac from sleeping or locking from being idle, even on battery, until you turn it off or quit Votive.")
+                Text("Caffeinate keeps the Mac from sleeping or locking from being idle, even on battery, until you turn it off or quit Votive Dots.")
             }
         }
         .formStyle(.grouped)

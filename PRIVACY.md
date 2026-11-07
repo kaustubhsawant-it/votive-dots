@@ -1,6 +1,6 @@
 # Privacy
 
-**Votive sends nothing anywhere.** It has no server, no account, no analytics, no crash
+**Votive Dots sends nothing anywhere.** It has no server, no account, no analytics, no crash
 reporting and no update check. The app, the hook scripts and the MCP server make no network
 connections of their own, and you build the app yourself from this source. What it learns about
 your sessions stays in files in your home folder.
@@ -9,7 +9,7 @@ Two things are outside that promise and are listed under
 [What leaves your Mac anyway](#what-leaves-your-mac-anyway): what your agent does with tool
 results, and what the services you download from log.
 
-This page lists every file Votive reads, writes and runs, so you can check each claim. A test
+This page lists every file Votive Dots reads, writes and runs, so you can check each claim. A test
 (`tests/privacy-manifest.test.js`) fails when the code writes a path the
 [writes list](#what-it-writes) does not name. [Verify it yourself](#verify-it-yourself) shows
 how to check the rest.
@@ -18,7 +18,7 @@ how to check the rest.
 
 Installing from a release zip needs only Node.js, and the installer builds nothing; you download the zip yourself
 from GitHub. Building from source needs tools you install yourself first (`brew install xcodegen`, Xcode),
-which download from their own sites. Votive's installer then runs `xcodegen` and `xcodebuild`
+which download from their own sites. Votive Dots' installer then runs `xcodegen` and `xcodebuild`
 on your Mac and fetches nothing. *[If the MCP server still uses the npm SDK when this ships, add:
 "`npm install` downloads its dependency once; it is pinned by `mcp-server/package-lock.json`."
 Delete this note once the server has no dependencies (AGEN-21).]*
@@ -92,10 +92,10 @@ in `~/Library/Preferences/dev.votive.Votive.plist`; registering the MCP server r
 | Budget settings, if you use budget mode | `~/.votive/budget/policy.json` (a mode, two levels, a short list of folders) |
 | Budget diagnostics counters, if you use the budget mod | `~/.votive/budget/diag.json` (counts per day, last 14 days, under 4 KB) |
 | Settings on Windows (the same keys as the menu settings on macOS) | `~/.votive/settings.json` |
-| Start with Windows, only if you turn it on in the tray menu | one value, `Votive`, under `HKCU\Software\Microsoft\Windows\CurrentVersion\Run` |
+| Start with Windows, only if you turn it on in the tray menu | one value, `Votive Dots`, under `HKCU\Software\Microsoft\Windows\CurrentVersion\Run` |
 | Menu and window settings (toggles, stuck threshold, and the switch "Let agents change settings") | macOS preferences for `dev.votive.Votive` |
 | The colors you chose for the state dots (a state and a six-digit color each, nothing else) | macOS preferences for `dev.votive.Votive` |
-| What the Votive window remembers: the page you last had open, whether the insights card is shown, and your weekly target (a number from 10 to 100 that only the forecast reads) | macOS preferences for `dev.votive.Votive` |
+| What the Votive Dots window remembers: the page you last had open, whether the insights card is shown, and your weekly target (a number from 10 to 100 that only the forecast reads) | macOS preferences for `dev.votive.Votive` |
 | The order you gave your sessions with **Move earlier / Move later**: a list of session ids (at most 100), kept until you reorder or the app is reset. It holds no other data about a session. | macOS preferences for `dev.votive.Votive` |
 | The sessions you marked **High priority**: each one's agent and session id, and when you marked it (at most 50; one you stop using is dropped after 14 days), and the folders you marked (full path, at most 50, kept until you remove them under Settings). Nothing about a session's content. | macOS preferences for `dev.votive.Votive` |
 | Settings of the app under its earlier name (Agent Overlay), copied once on first launch; the switch "Let agents change settings" is not copied, so you decide it again | macOS preferences for `dev.votive.Votive` (read from `app.agentoverlay.AgentOverlay`) |
@@ -141,8 +141,8 @@ Codex does not always record them; when it does not, nothing is shown.
   **Ports** tool it also runs `/usr/sbin/lsof` with fixed arguments (no shell) when you open the menu,
   and, only after you confirm a named program in a dialog, sends it one signal: SIGTERM to ask it to
   quit (a second confirmation is needed for SIGKILL), or SIGSTOP / SIGCONT to pause and resume it.
-  A program Votive paused is remembered in `paused.json`; when you quit Votive it asks whether to resume it. It can only signal your own programs, never
-  an agent session, Votive itself or a macOS program, and it opens no network socket. No agent can
+  A program Votive Dots paused is remembered in `paused.json`; when you quit Votive Dots it asks whether to resume it. It can only signal your own programs, never
+  an agent session, Votive Dots itself or a macOS program, and it opens no network socket. No agent can
   reach it: the MCP tools have nothing for ports.
 - **The hook** runs `/bin/ps` to find the agent's process id.
 - **The status-line wrapper** runs the status-line command you already had. If you use the
@@ -181,7 +181,7 @@ entitlement; update this paragraph with the real entitlement list when it ships 
   uses.
 - **Where you download it.** GitHub logs downloads; Homebrew collects install statistics unless
   you run `brew analytics off`; macOS may check a downloaded, notarized app with Apple the first
-  time you open it. Votive itself is not part of any of those.
+  time you open it. Votive Dots itself is not part of any of those.
 
 ## Removing everything
 
@@ -224,7 +224,7 @@ These are optional additions. None of them changes the promise above: nothing is
 
 ```sh
 node --test tests/*.test.js     # includes tests/no-network.test.js
-grep -rnE "URLSession|URLRequest|NWConnection|import Network|CFSocket|socket\(" Votive
+grep -rnE "URLSession|URLRequest|NWConnection|import Network|CFSocket|socket\(" Votive Dots
 grep -rnE "require\(['\"](https?|net|tls|dgram|http2)['\"]\)|fetch\(|WebSocket" Scripts mcp-server
 ```
 
@@ -242,7 +242,7 @@ Snitch; the app never tries to connect.
 **3. It writes only what is listed.** `node --test tests/privacy-manifest.test.js`, or watch it:
 
 ```sh
-sudo fs_usage -w -f filesys "Votive" | grep -E "WrData|mkdir|rename|unlink"
+sudo fs_usage -w -f filesys "Votive Dots" | grep -E "WrData|mkdir|rename|unlink"
 ```
 
 **4. The app asks for nothing extra.**

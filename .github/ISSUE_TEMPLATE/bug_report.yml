@@ -1,11 +1,11 @@
 name: Bug report
-description: Something in Votive is wrong or behaves differently from the guide
+description: Something in Votive Dots is wrong or behaves differently from the guide
 labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for trying Votive. This is a one-person project, so details help a lot. Please do not paste prompts, folder names or anything private: `doctor` output below shows only what is wrong with the install.
+        Thanks for trying Votive Dots. This is a one-person project, so details help a lot. Please do not paste prompts, folder names or anything private: `doctor` output below shows only what is wrong with the install.
   - type: textarea
     id: what
     attributes:
@@ -21,8 +21,8 @@ body:
   - type: input
     id: version
     attributes:
-      label: Votive version
-      description: "Menu > About Votive, or the number in the release you downloaded"
+      label: Votive Dots version
+      description: "Menu > About Votive Dots, or the number in the release you downloaded"
       placeholder: "1.8.0"
     validations:
       required: true

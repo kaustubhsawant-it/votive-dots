@@ -18,7 +18,7 @@ struct HabitsPage: View {
                 Color.clear.frame(height: 200).listRowBackground(Color.clear)
             } else {
                 EmptyPage(title: "Not enough history yet", symbol: "clock.badge.questionmark",
-                          message: "Votive learns your rhythm from the plan limits your agents report. A day or two of use is enough to start.")
+                          message: "Votive Dots learns your rhythm from the plan limits your agents report. A day or two of use is enough to start.")
             }
         }
     }
@@ -69,7 +69,7 @@ struct HabitsPage: View {
                 .frame(height: 180)
                 .padding(.vertical, 6)
                 .accessibilityLabel("Points of the weekly limit used on each whole day")
-            } header: { SectionLabel("Points used each day") } footer: { Text("Whole days Votive has seen, midnight to midnight.") }
+            } header: { SectionLabel("Points used each day") } footer: { Text("Whole days Votive Dots has seen, midnight to midnight.") }
         }
     }
 
@@ -80,7 +80,7 @@ struct HabitsPage: View {
         return Section {
             if b.enough {
                 Chart {
-                    BarMark(x: .value("Points off", b.maeModel), y: .value("Method", "Votive's model"))
+                    BarMark(x: .value("Points off", b.maeModel), y: .value("Method", "Votive Dots' model"))
                         .foregroundStyle(Color.accentColor).annotation(position: .trailing) { Text(Self.points(b.maeModel) + " points").font(.caption).monospacedDigit() }
                     BarMark(x: .value("Points off", b.maeBaseline), y: .value("Method", "An average day"))
                         .foregroundStyle(Color.secondary.opacity(0.55)).annotation(position: .trailing) { Text(Self.points(b.maeBaseline) + " points").font(.caption).monospacedDigit() }
@@ -89,7 +89,7 @@ struct HabitsPage: View {
                 .chartXScale(domain: 0...(max(b.maeModel, b.maeBaseline) * 1.4 + 0.1))
                 .frame(height: 96)
                 .padding(.vertical, 6)
-                .accessibilityLabel("Average error per day: Votive's model \(Self.points(b.maeModel)) points, an average day \(Self.points(b.maeBaseline)) points")
+                .accessibilityLabel("Average error per day: Votive Dots' model \(Self.points(b.maeModel)) points, an average day \(Self.points(b.maeBaseline)) points")
             }
             if let check = report.insights.first(where: { $0.hasPrefix("Check:") || $0.hasPrefix("Too early") }) {
                 Label(check.replacingOccurrences(of: "Check: ", with: ""), systemImage: b.days >= UsageHabits.sureDays && b.beatsBaseline ? "checkmark.seal" : "exclamationmark.circle")
@@ -99,7 +99,7 @@ struct HabitsPage: View {
                 Text("\(b.days) of \(UsageHabits.sureDays) days seen before it can claim to beat a plain average").font(.caption).foregroundStyle(.secondary)
             }
         } header: { SectionLabel("How sure is it?") } footer: {
-            if b.enough { Text("Votive predicts each day it has seen using only the other days, then compares with guessing \"an average day\". A shorter bar is better.") }
+            if b.enough { Text("Votive Dots predicts each day it has seen using only the other days, then compares with guessing \"an average day\". A shorter bar is better.") }
         }
     }
 

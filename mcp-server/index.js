@@ -37,7 +37,7 @@ const doctor = require(path.join(__dirname, '..', 'Scripts', 'doctor.js'));
 const NOTIFY_TOOL = {
   name: 'notify',
   description:
-    'Pop a custom alert dialog in the user\'s Votive menu-bar app for THIS session, ' +
+    'Pop a custom alert dialog in the user\'s Votive Dots menu-bar app for THIS session, ' +
     'right now — independent of whether your session state actually changed.\n\n' +
     'ONLY call this when the user\'s own prompt in this conversation explicitly asked to be ' +
     'notified, pinged, or told when something happens — e.g. "let me know when this is ' +
@@ -97,17 +97,17 @@ const SETTINGS_TOOL_SCHEMA = {
 const SETTINGS_GET_TOOL = {
   name: 'settings_get',
   description:
-    'Read the user\'s Votive preferences (the menu-bar app that shows a dot per agent session): ' +
+    'Read the user\'s Votive Dots preferences (the menu-bar app that shows a dot per agent session): ' +
     'every setting with its current value, its default and what it does. Read-only; call it with no arguments. ' +
     'To change a setting use settings_set, which only works if the user has allowed agents to change settings.',
   inputSchema: { type: 'object', properties: {} },
-  annotations: { title: 'Read Votive settings', readOnlyHint: true, openWorldHint: false },
+  annotations: { title: 'Read Votive Dots settings', readOnlyHint: true, openWorldHint: false },
 };
 
 const SETTINGS_SET_TOOL = {
   name: 'settings_set',
   description:
-    'Change one or more of the user\'s Votive preferences; the running app applies them immediately. ' +
+    'Change one or more of the user\'s Votive Dots preferences; the running app applies them immediately. ' +
     'Only change a setting when the user asked for that change (e.g. "stop the pop-ups for every ' +
     'session" -> popupOnEveryChange=false and bannerOnEveryChange=false; "only tell me when I ask" ' +
     '-> the same, keeping notifyOnRequest=true; "play Hero when a session is done" -> soundDone=Hero; ' +
@@ -116,20 +116,20 @@ const SETTINGS_SET_TOOL = {
     'otherwise it is refused, and you should tell the user how to turn it on or give them the command. ' +
     'It is also rate limited (a few changes an hour), and every change is logged where the user can see and undo it.',
   inputSchema: SETTINGS_TOOL_SCHEMA,
-  annotations: { title: 'Change Votive settings', readOnlyHint: false, destructiveHint: false, idempotentHint: true, openWorldHint: false },
+  annotations: { title: 'Change Votive Dots settings', readOnlyHint: false, destructiveHint: false, idempotentHint: true, openWorldHint: false },
   _meta: { 'anthropic/requiresUserInteraction': true },
 };
 
 const DIAGNOSE_TOOL = {
   name: 'diagnose',
   description:
-    'Check the user\'s Votive install: whether the app is installed, running and starts at ' +
+    'Check the user\'s Votive Dots install: whether the app is installed, running and starts at ' +
     'login, whether its hook scripts are current, which agents are found and wired, whether ' +
     'Claude Code plan usage is being recorded, and recent activity. Read-only. Use it when the ' +
     'user reports missing dots, missing usage, or that something "isn\'t working". The result ' +
     'lists any failing checks and the repairs that would fix them.',
   inputSchema: { type: 'object', properties: {} },
-  annotations: { title: 'Check the Votive install', readOnlyHint: true, openWorldHint: false },
+  annotations: { title: 'Check the Votive Dots install', readOnlyHint: true, openWorldHint: false },
 };
 
 const REPAIR_TOOL = {
@@ -140,7 +140,7 @@ const REPAIR_TOOL = {
     '. With no `repairs` it runs the ones diagnose recommends. Agent config files are backed up ' +
     'before they change. It does not rebuild or reinstall the app itself; if the app is missing, ' +
     'tell the user to run ./Scripts/install.sh. Only run this when the user asked you to fix ' +
-    'Votive, and report what was done. It works only if the user has switched on "Let agents ' +
+    'Votive Dots, and report what was done. It works only if the user has switched on "Let agents ' +
     'change settings" in the app\'s menu; otherwise it is refused, so tell the user how to turn it on. ' +
     'It is rate limited and logged where the user can see it.',
   inputSchema: {
@@ -153,12 +153,12 @@ const REPAIR_TOOL = {
       },
     },
   },
-  annotations: { title: 'Repair the Votive install', readOnlyHint: false, destructiveHint: true, idempotentHint: true, openWorldHint: false },
+  annotations: { title: 'Repair the Votive Dots install', readOnlyHint: false, destructiveHint: true, idempotentHint: true, openWorldHint: false },
   _meta: { 'anthropic/requiresUserInteraction': true }
 };
 
 const server = new Server(
-  { name: 'votive', version: '1.8.1' },
+  { name: 'votive', version: '1.8.2' },
   { capabilities: { tools: {} } }
 );
 
@@ -185,10 +185,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         const result = writeNotify(args.message, process.ppid);
         if (!result.ok) return text('Failed: ' + result.error, true);
         guard.record({ tool: 'notify', agent: callerAgent(), ok: true, summary: 'sent a notification panel' });   // never the message itself
-        return text('Notified Votive for this session.');
+        return text('Notified Votive Dots for this session.');
       }
       case 'settings_get':
-        return text('Current Votive settings:\n' + describeSettings(settings.getSettings()));
+        return text('Current Votive Dots settings:\n' + describeSettings(settings.getSettings()));
       case 'settings_set': {
         const refused = guard.refuse('settings_set', true);
         if (refused) { guard.record({ tool: 'settings_set', agent: callerAgent(), ok: false, summary: 'refused: ' + (guard.writesAllowed() ? 'rate limit' : 'agent changes are switched off') }); return text(refused, true); }

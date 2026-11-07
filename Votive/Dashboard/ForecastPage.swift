@@ -15,7 +15,7 @@ struct ForecastPage: View {
                 if let f = report.forecast { forecast(report, f) } else {
                     PageTop { ForecastHero(report: report, go: { _ in }) }
                     Section {
-                        Text("The forecast needs \(UsageHabits.minDaysForecast) whole days of history and a current weekly reading. Until then Votive only shows what it has seen.")
+                        Text("The forecast needs \(UsageHabits.minDaysForecast) whole days of history and a current weekly reading. Until then Votive Dots only shows what it has seen.")
                             .foregroundStyle(.secondary)
                     }
                 }
@@ -23,7 +23,7 @@ struct ForecastPage: View {
                 Color.clear.frame(height: 200).listRowBackground(Color.clear)
             } else {
                 EmptyPage(title: "No usage history yet", symbol: "chart.line.uptrend.xyaxis",
-                          message: "Votive keeps a small history of the plan limits your agents report. It starts after the next Claude Code status-line refresh.")
+                          message: "Votive Dots keeps a small history of the plan limits your agents report. It starts after the next Claude Code status-line refresh.")
             }
         }
         .onChange(of: target) { _, _ in model.refresh() }
@@ -50,7 +50,7 @@ struct ForecastPage: View {
         Section {
             DisclosureGroup("Numbers by day") { numbers(report) }
             DisclosureGroup("How this is worked out") {
-                Text("Votive adds up how many points of the weekly limit you usually use in each remaining hour, split into weekdays and weekends and leaning on recent days, and adds that to what is used now. The shaded band is the middle 80% of how much whole days differ from each other, so it widens the further away the reset is. A point is one percent of the weekly limit. Nothing leaves this Mac.")
+                Text("Votive Dots adds up how many points of the weekly limit you usually use in each remaining hour, split into weekdays and weekends and leaning on recent days, and adds that to what is used now. The shaded band is the middle 80% of how much whole days differ from each other, so it widens the further away the reset is. A point is one percent of the weekly limit. Nothing leaves this Mac.")
                     .font(.callout).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true).padding(.top, 4)
             }
         }

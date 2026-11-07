@@ -43,7 +43,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             + (frozen.count > 5 ? " and \(frozen.count - 5) more" : "")
         let alert = NSAlert()
         alert.messageText = frozen.count == 1 ? "Resume the paused program before quitting?" : "Resume \(frozen.count) paused programs before quitting?"
-        alert.informativeText = "Votive paused \(names). If you leave \(frozen.count == 1 ? "it" : "them") paused, \(frozen.count == 1 ? "it stays" : "they stay") frozen until you resume \(frozen.count == 1 ? "it" : "them") from Votive's Ports menu (once Votive is running again)."
+        alert.informativeText = "Votive Dots paused \(names). If you leave \(frozen.count == 1 ? "it" : "them") paused, \(frozen.count == 1 ? "it stays" : "they stay") frozen until you resume \(frozen.count == 1 ? "it" : "them") from Votive Dots' Ports menu (once Votive Dots is running again)."
         alert.addButton(withTitle: "Resume them")
         alert.addButton(withTitle: "Leave paused")
         alert.addButton(withTitle: "Don't quit")

@@ -34,7 +34,7 @@ test('release: the package holds the app, the scripts and an installer, with che
   const out = path.join(d, 'out');
   const r = spawnSync('bash', [path.join(ROOT, 'Scripts', 'make-release.sh')], { encoding: 'utf8', env: { ...process.env, VOTIVE_APP: app, VOTIVE_RELEASE_OUT: out } });
   assert.equal(r.status, 0, r.stderr + r.stdout);
-  const zip = path.join(out, `Votive-${version}-mac.zip`);
+  const zip = path.join(out, `Votive-Dots-${version}-mac.zip`);
   assert.ok(fs.existsSync(zip), 'the zip is named after the version in project.yml');
 
   const sums = spawnSync('shasum', ['-a', '256', '-c', 'SHA256SUMS.txt'], { cwd: out, encoding: 'utf8' });
@@ -43,7 +43,7 @@ test('release: the package holds the app, the scripts and an installer, with che
   const x = path.join(d, 'x');
   fs.mkdirSync(x);
   assert.equal(spawnSync('ditto', ['-x', '-k', zip, x]).status, 0);
-  const top = path.join(x, `Votive-${version}`);
+  const top = path.join(x, `Votive-Dots-${version}`);
   const has = (p) => fs.existsSync(path.join(top, p));
   for (const p of ['Votive.app/Contents/MacOS/Votive', 'Scripts/install.sh', 'Scripts/uninstall.sh', 'Scripts/doctor.js', 'Scripts/votive-event.js',
     'mcp-server/index.js', 'mcp-server/package.json', 'mcp-server/package-lock.json', 'INSTALL.txt', 'README.md', 'LICENSE', 'PRIVACY.md', 'SECURITY.md']) {

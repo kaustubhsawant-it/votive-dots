@@ -137,7 +137,7 @@ enum PortScan {
     static func refusal(for l: PortListener, path: String?, ownUID: UInt32, ownPID: Int32,
                         agentPIDs: Set<Int32>) -> String? {
         if l.pid <= 1 { return "That is a core system process." }
-        if l.pid == ownPID { return "That is Votive itself." }
+        if l.pid == ownPID { return "That is Votive Dots itself." }
         if l.uid != ownUID { return "Another user owns that program, so macOS would not allow it." }
         if agentPIDs.contains(l.pid) { return "That port belongs to a running agent session. Close the session from its terminal instead." }
         if isSystemPath(path) { return "That is part of macOS." }
@@ -148,7 +148,7 @@ enum PortScan {
     /// of the user's, an agent session included (something else may have frozen it).
     static func resumeRefusal(for l: PortListener, ownUID: UInt32, ownPID: Int32) -> String? {
         if l.pid <= 1 { return "That is a core system process." }
-        if l.pid == ownPID { return "That is Votive itself." }
+        if l.pid == ownPID { return "That is Votive Dots itself." }
         if l.uid != ownUID { return "Another user owns that program, so macOS would not allow it." }
         return nil
     }

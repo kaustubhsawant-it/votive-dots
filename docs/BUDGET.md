@@ -48,7 +48,7 @@ Settings are kept in `~/.votive/budget/policy.json`. Change them from a terminal
     node Scripts/budget-policy.js project add /work/big   # an absolute folder
     node Scripts/budget-policy.js harden                  # make the folder private (0700) and the file 0600
 
-(This script needs Node 22.12 or newer; everything else in Votive works on Node 18.)
+(This script needs Node 22.12 or newer; everything else in Votive Dots works on Node 18.)
 
 ## Checking on it
 
@@ -63,7 +63,7 @@ Settings are kept in `~/.votive/budget/policy.json`. Change them from a terminal
 When Claude Code hits a plan limit, you get one panel saying what will happen: it should continue by itself
 shortly after the reset; or it will not (the reset is more than a day away, so use `/rate-limit-options`); or
 automatic continue is turned off; or your Claude Code is too old; or "check Claude Code" when the version is
-not known. It is shown once per reset time. Claude Code's own automatic continue does the continuing; Votive never does.
+not known. It is shown once per reset time. Claude Code's own automatic continue does the continuing; Votive Dots never does.
 
 ## What is and is not proven
 

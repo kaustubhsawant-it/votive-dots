@@ -46,7 +46,7 @@ struct HistoryPage: View {
                 Color.clear.frame(height: 200).listRowBackground(Color.clear)
             } else if data.count < 2 {
                 EmptyPage(title: "No readings in the last \(range.rawValue)", symbol: "calendar.badge.exclamationmark",
-                          message: "Votive records the plan limits only while an agent is running, so a quiet stretch has no readings. Try a longer range.")
+                          message: "Votive Dots records the plan limits only while an agent is running, so a quiet stretch has no readings. Try a longer range.")
             } else {
                 Section { chart(data).padding(.vertical, 6) } header: { SectionLabel("\(metric.rawValue) limit used") }
                 summary(data)

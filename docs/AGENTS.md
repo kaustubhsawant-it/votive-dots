@@ -1,8 +1,8 @@
 # Supported agents
 
-Votive works with any agentic coding tool that can run a command when something happens
+Votive Dots works with any agentic coding tool that can run a command when something happens
 in a session. Every agent reports through the same script, and a table of adapters
-(`Scripts/agents.js`) translates each agent's event names into Votive's states:
+(`Scripts/agents.js`) translates each agent's event names into Votive Dots' states:
 
 | State | Dot | Meaning |
 |---|---|---|
@@ -39,7 +39,7 @@ node Scripts/install-agents.js --list          # see what's detected, change not
 | **OpenCode** | `~/.config/opencode/plugins/votive.js` (a plugin) | session.created/idle/error/deleted, permission.*, chat.message, tool.execute.after | yes | no |
 
 Notes:
-- **Codex** runs a new hook only after you trust it. Open Codex once and approve the Votive hooks in `/hooks`.
+- **Codex** runs a new hook only after you trust it. Open Codex once and approve the Votive Dots hooks in `/hooks`.
 - **Cursor** also runs Claude Code's hooks by default. Those events are recognized as Cursor
   (by `cursor_version` / `conversation_id` in the payload), so they never show up as a Claude
   Code session.

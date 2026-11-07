@@ -5,18 +5,18 @@
 Please report security issues privately through the repository's **Security → Report a
 vulnerability** page (GitHub private vulnerability reporting), not in a public issue. Include
 what you found, how to reproduce it, and which version (`CHANGELOG.md`) you ran. If you can't use
-that page, email **parabkaustubh13@gmail.com** with "Votive security" in the subject, and please
+that page, email **parabkaustubh13@gmail.com** with "Votive Dots security" in the subject, and please
 don't put exploit details in a public place first. This is a one-person project: you'll get an
 acknowledgement within 7 days (best effort), and credit in the fix's changelog entry if you'd like it.
 
 Only the latest release gets fixes.
 
-## How Votive is built to be safe
+## How Votive Dots is built to be safe
 
 See [PRIVACY.md](PRIVACY.md) for what it reads, writes and runs. The security-relevant design
 choices:
 
-**No network, no privileges.** Votive's own code (the app, the hooks and the MCP server's
+**No network, no privileges.** Votive Dots' own code (the app, the hooks and the MCP server's
 `index.js`) contains no networking code, and `tests/no-network.test.js` fails if any appears. One
 caveat: the MCP server's npm dependency tree ships HTTP server libraries (express, hono) that the
 stdio server never loads; they sit on disk but no code path reaches them. Nothing listens on a
@@ -43,7 +43,7 @@ and `tests/release.test.js` pins it to that one app.
 - writes the new version to a temporary file and renames it into place, so a crash can't leave
   half a file; symlinks are preserved
 
-It only adds or removes entries that run Votive's own script, and leaves everything
+It only adds or removes entries that run Votive Dots' own script, and leaves everything
 else alone.
 
 **Your data stays private to you.** `~/.votive`, `events/` and `usage/` are created
@@ -60,11 +60,11 @@ names, prompts or any other text an agent could influence. AppleScript runs thro
 program, sends one signal to that one process id (SIGTERM to ask it to quit, SIGSTOP to freeze it, SIGCONT to
 continue it). Just before sending it checks again that the
 same process still listens on that port, so a recycled process id is never hit. It refuses your
-agent sessions, Votive, programs owned by another user and programs under `/System`, `/usr/libexec`,
+agent sessions, Votive Dots, programs owned by another user and programs under `/System`, `/usr/libexec`,
 `/usr/sbin` and `/sbin`; macOS itself refuses anything you cannot already stop with `kill`. The
 default button in the dialog is Cancel. A program it froze is remembered in `~/.votive/paused.json`, which is
 re-validated on every read (same user, still frozen, same process start time), so an edited or stale file
-cannot make it signal another process; quitting Votive asks to resume what it froze, and command-line
+cannot make it signal another process; quitting Votive Dots asks to resume what it froze, and command-line
 arguments, which can hold secrets, are never read. No MCP tool or setting an agent can write reaches it
 (`tests/ports.test.js` fails if one does).
 
@@ -87,7 +87,7 @@ a program running as you can still change the preference or the files directly (
 - **Other programs running as you can write the same files.** Any process with your user's
   permissions can write to `~/.votive`, just as it could edit your shell config. The
   worst it can do there is show wrong dots or a plain-text notify panel.
-- **Agents decide what the hooks see.** Votive only records what an agent sends to its
+- **Agents decide what the hooks see.** Votive Dots only records what an agent sends to its
   hook; it can't make an agent report more or less.
 - **The MCP server's dependencies come from npm.** `mcp-server/package-lock.json` pins exact
   versions and integrity hashes (about 90 packages, most never loaded), and `tests/mcp-deps.test.js`

@@ -235,7 +235,7 @@ final class PortsMenu: NSObject {
         if !confirmedPause.contains(l.pid) {
             let alert = NSAlert()
             alert.messageText = "Pause \(l.command) on port \(l.port)?"
-            alert.informativeText = "It freezes (process \(l.pid)) until you resume it from this menu. It keeps port \(l.port), so anything that connects to it will wait. Votive offers to resume it when you quit." + PortScan.databaseNote(l.port)
+            alert.informativeText = "It freezes (process \(l.pid)) until you resume it from this menu. It keeps port \(l.port), so anything that connects to it will wait. Votive Dots offers to resume it when you quit." + PortScan.databaseNote(l.port)
             alert.alertStyle = .warning
             alert.addButton(withTitle: "Cancel")                 // the Return key does nothing
             alert.addButton(withTitle: "Pause")

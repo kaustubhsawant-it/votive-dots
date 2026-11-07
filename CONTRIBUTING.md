@@ -1,10 +1,10 @@
-# Contributing to Votive
+# Contributing to Votive Dots
 
 Thanks for looking. This is a small, one-person project, so the best contributions are bug reports with the details
 asked for in the issue form, and small, focused pull requests.
 
 ## Before you start
-Open an issue first for anything bigger than a fix, so we agree on it before you spend time. Votive keeps two promises
+Open an issue first for anything bigger than a fix, so we agree on it before you spend time. Votive Dots keeps two promises
 that shape what can be added:
 
 - **Nothing leaves your Mac.** No networking code anywhere in the app, the hooks or the MCP server. A test
@@ -15,9 +15,9 @@ that shape what can be added:
 ## Build and test
 ```sh
 brew install xcodegen node
-git clone https://github.com/kaustubhsawant-it/votive.git && cd votive
+git clone https://github.com/kaustubhsawant-it/votive-dots.git && cd votive
 xcodegen generate
-xcodebuild -project Votive.xcodeproj -scheme Votive -configuration Debug build
+xcodebuild -project Votive.xcodeproj -scheme Votive Dots -configuration Debug build
 node --test tests/*.test.js
 ```
 More in [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) and [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). The Swift logic is

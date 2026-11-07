@@ -1,12 +1,12 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/images/hero-dark.png">
-    <img src="docs/images/hero-light.png" alt="Votive: one colored dot in your Mac's menu bar for each AI coding agent session" width="860">
+    <img src="docs/images/hero-light.png" alt="Votive Dots: one colored dot in your Mac's menu bar for each AI coding agent session" width="860">
   </picture>
 </p>
 
 <p align="center">
-  <a href="https://github.com/kaustubhsawant-it/votive/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/kaustubhsawant-it/votive?color=7B5CFF&amp;label=release"></a>
+  <a href="https://github.com/kaustubhsawant-it/votive-dots/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/kaustubhsawant-it/votive-dots?color=7B5CFF&amp;label=release"></a>
   <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-2EA043"></a>
   <img alt="macOS 14 or newer" src="https://img.shields.io/badge/macOS-14%2B-171A26">
   <img alt="Apple Silicon and Intel" src="https://img.shields.io/badge/Apple%20Silicon%20%2B%20Intel-universal-171A26">
@@ -15,13 +15,15 @@
 
 <p align="center">
   <a href="#install"><b>Install</b></a> &nbsp;|&nbsp;
-  <a href="docs/Votive-Quick-Guide.pdf">Quick guide (PDF)</a> &nbsp;|&nbsp;
+  <a href="docs/Votive-Dots-Quick-Guide.pdf">Quick guide (PDF)</a> &nbsp;|&nbsp;
   <a href="#what-the-dots-mean">What the dots mean</a> &nbsp;|&nbsp;
   <a href="PRIVACY.md">Privacy</a> &nbsp;|&nbsp;
   <a href="CHANGELOG.md">Changelog</a>
 </p>
 
 ## What it does
+
+**Votive Dots** was called Votive until November 2026, and Agent Overlay before that. In the terminal and on disk it is still `votive`: `~/.votive`, `Votive.app` and the MCP server `votive`.
 
 A small macOS menu-bar app that shows one colored dot for each running AI coding-agent
 session: **Claude Code, Codex, Gemini CLI, Cursor, Copilot CLI, Qwen Code, Windsurf, OpenCode**,
@@ -34,16 +36,16 @@ the dots to the limit's name ("Weekly") to its number ("74%") and back.
 Pure AppKit, no third-party Swift dependencies, about 15–25 MB of memory when idle. Everything
 stays on your Mac.
 
-<p align="center"><img src="docs/images/menu-bar.png" alt="The Mac menu bar with three Votive dots: yellow working, green done, purple needs you" width="860"></p>
-<p align="center"><img src="docs/images/menu.png" alt="The Votive menu: plan usage, one row per session, Caffeinate, prompt snippets, ports and settings" width="860"></p>
+<p align="center"><img src="docs/images/menu-bar.png" alt="The Mac menu bar with three Votive Dots: yellow working, green done, purple needs you" width="860"></p>
+<p align="center"><img src="docs/images/menu.png" alt="The Votive Dots menu: plan usage, one row per session, Caffeinate, prompt snippets, ports and settings" width="860"></p>
 <p align="center"><sub>Illustrations with made-up sessions.</sub></p>
 
 ### Get it in two minutes
 
 ```sh
 # 1. Install Node.js if you don't have it:  brew install node
-# 2. Download Votive-<version>-mac.zip from the latest release, unzip it, then:
-cd ~/Downloads/Votive-<version>
+# 2. Download Votive-Dots-<version>-mac.zip from the latest release, unzip it, then:
+cd ~/Downloads/Votive-Dots-<version>
 ./Scripts/install.sh
 ```
 
@@ -52,10 +54,10 @@ No Xcode needed. Details, the checksum and the build-from-source option are unde
 > **Local only.** Installed from a download or built from source on your Mac; sends no data anywhere. See
 > [PRIVACY.md](PRIVACY.md) for how to check that yourself.
 >
-> Votive is an independent community project. It is not made by, affiliated with or
+> Votive Dots is an independent community project. It is not made by, affiliated with or
 > endorsed by Anthropic, OpenAI, Google, GitHub, Cursor or any other agent's maker.
 
-**New to Votive?** The three-page illustrated [quick guide](docs/Votive-Quick-Guide.pdf) covers install, the dots and the menu.
+**New to Votive Dots?** The three-page illustrated [quick guide](docs/Votive-Dots-Quick-Guide.pdf) covers install, the dots and the menu.
 
 ## Requirements
 
@@ -70,11 +72,11 @@ No Xcode needed. Details, the checksum and the build-from-source option are unde
 
 ## Install
 
-**Option A: download (no Xcode needed).** Get `Votive-<version>-mac.zip` from the
-[latest release](https://github.com/kaustubhsawant-it/votive/releases/latest), unzip it, then in Terminal:
+**Option A: download (no Xcode needed).** Get `Votive-Dots-<version>-mac.zip` from the
+[latest release](https://github.com/kaustubhsawant-it/votive-dots/releases/latest), unzip it, then in Terminal:
 
 ```sh
-cd ~/Downloads/Votive-<version>
+cd ~/Downloads/Votive-Dots-<version>
 ./Scripts/install.sh
 ```
 
@@ -85,7 +87,7 @@ way. To check the download, run `shasum -a 256 -c SHA256SUMS.txt` next to the zi
 **Option B: build from source.**
 
 ```sh
-git clone https://github.com/kaustubhsawant-it/votive.git votive
+git clone https://github.com/kaustubhsawant-it/votive-dots.git votive
 cd votive
 ./Scripts/install.sh
 ```
@@ -95,7 +97,7 @@ The dots appear in your menu bar as soon as it finishes, and the app starts agai
 at every login. It's safe to run again after pulling updates, and
 `node Scripts/install-agents.js` wires an agent you install later.
 
-**Codex users:** open Codex once and approve the Votive hooks in `/hooks`; Codex doesn't
+**Codex users:** open Codex once and approve the Votive Dots hooks in `/hooks`; Codex doesn't
 run new hooks until you trust them.
 
 ### What the installer changes on your Mac
@@ -192,8 +194,8 @@ behaves differently.
 - **Sounds.** A different sound for a notify, a session needing you, an error, stuck,
   stopped or done, for every agent, set under **Settings → Sounds** (macOS sounds or your
   own files in `~/.votive/sounds/`). Out of the box only the notify chimes.
-- **The Votive window.** Choose **Open Votive…** (⌘D in the menu) for the detailed view: **Overview** (the weekly forecast in one panel, every plan limit as a bar, your sessions), **Forecast** (where the weekly limit is expected to stand at the reset, with a range and your target), **Habits** (when you use your plan and how far to trust what Votive has learned), **History** (the readings over 24 hours to 30 days), and every setting from the menu under **General**, **Alerts**, **Sounds** and **Agents & tools**. The **Insights** card at the bottom of the sidebar says in a few plain lines what is worth knowing right now. It runs on macOS 14 and later and uses the new glass look on macOS 26. Everything is worked out on this Mac from the usage history file; nothing is sent anywhere.
-- **High priority sessions.** Hover a session in the menu and choose **High priority**. It moves to the front of the list and the menu-bar dots follow, and its dot is never squeezed out when you have more than six sessions. Turn on **Settings › Alerts › Only alert for high-priority sessions** to get banners, pop-ups and state-change sounds only from those sessions (a message you asked a session to send always shows). A pin lasts as long as the session and survives restarting Votive. To change where a dot sits without changing priority, choose **Move earlier** or **Move later**: a dot only moves among the sessions of its own kind, so a pinned dot stays ahead of the unpinned ones. To avoid pinning every new session, choose **High priority: every session in this folder, now and later**: any session you start in that exact folder is high priority from the start (stop it under **Settings › Alerts › High priority folders**).
+- **The Votive Dots window.** Choose **Open Votive Dots…** (⌘D in the menu) for the detailed view: **Overview** (the weekly forecast in one panel, every plan limit as a bar, your sessions), **Forecast** (where the weekly limit is expected to stand at the reset, with a range and your target), **Habits** (when you use your plan and how far to trust what Votive Dots has learned), **History** (the readings over 24 hours to 30 days), and every setting from the menu under **General**, **Alerts**, **Sounds** and **Agents & tools**. The **Insights** card at the bottom of the sidebar says in a few plain lines what is worth knowing right now. It runs on macOS 14 and later and uses the new glass look on macOS 26. Everything is worked out on this Mac from the usage history file; nothing is sent anywhere.
+- **High priority sessions.** Hover a session in the menu and choose **High priority**. It moves to the front of the list and the menu-bar dots follow, and its dot is never squeezed out when you have more than six sessions. Turn on **Settings › Alerts › Only alert for high-priority sessions** to get banners, pop-ups and state-change sounds only from those sessions (a message you asked a session to send always shows). A pin lasts as long as the session and survives restarting Votive Dots. To change where a dot sits without changing priority, choose **Move earlier** or **Move later**: a dot only moves among the sessions of its own kind, so a pinned dot stays ahead of the unpinned ones. To avoid pinning every new session, choose **High priority: every session in this folder, now and later**: any session you start in that exact folder is high priority from the start (stop it under **Settings › Alerts › High priority folders**).
 - **Stuck detection** with a threshold you can change (Off / 5 / 8 / 15 minutes).
 - **Prompt snippets.** Reusable prompts you can copy with one click, stored in
   `~/.votive/snippets.json`.
@@ -204,24 +206,24 @@ behaves differently.
   programs each row has a **Pause** switch (freezes the program but keeps its port, so you can free the
   CPU or hold a server and resume it later) and **Stop** (asks it to quit; a second dialog is needed to
   force it). Both ask first and add a warning on database ports. They never touch an agent session,
-  Votive itself, another user's program or a macOS program, and no agent can use them. If Votive paused
+  Votive Dots itself, another user's program or a macOS program, and no agent can use them. If Votive Dots paused
   something it offers to resume it when you quit, and shows it as paused after a restart. The watch list
   is `~/.votive/ports.json`. It needs no administrator rights and cannot block a port at the firewall.
 
 ## Control it by asking your agent
 
-The bundled MCP server lets any agent read Votive's settings and check it right away. To let an
+The bundled MCP server lets any agent read Votive Dots' settings and check it right away. To let an
 agent also **change** settings or **repair** the install, you first switch on **Settings → Agents → Let agents
 change settings** in the menu (it is off by default, and no tool can switch it on). Then just ask in plain words:
 
 | You say | Tool the agent uses |
 |---|---|
-| "Stop the Votive pop-ups for every session" | `settings_set`: turns off **popupOnEveryChange** and **bannerOnEveryChange** |
+| "Stop the Votive Dots pop-ups for every session" | `settings_set`: turns off **popupOnEveryChange** and **bannerOnEveryChange** |
 | "Only show a session as stuck after 20 minutes" | `settings_set`: **stuckThresholdMinutes** = 20 |
 | "Turn on colorblind shapes" / "stop the red pulse" | `settings_set` |
-| "What are my Votive settings?" | `settings_get` (read-only) |
-| "Why isn't Votive showing my usage?" | `diagnose`: checks the app, login item, scripts, every agent's hooks and the usage status line |
-| "Fix Votive" | `repair`: re-copies scripts, re-wires hooks, re-wraps the status line or restarts the app, backing up any config it changes |
+| "What are my Votive Dots settings?" | `settings_get` (read-only) |
+| "Why isn't Votive Dots showing my usage?" | `diagnose`: checks the app, login item, scripts, every agent's hooks and the usage status line |
+| "Fix Votive Dots" | `repair`: re-copies scripts, re-wires hooks, re-wraps the status line or restarts the app, backing up any config it changes |
 | "Let me know when the tests pass" | `notify` |
 
 Changes apply to the running app immediately. They are limited (a handful per hour), each one pops a panel and is listed under **Agent changes**
@@ -288,7 +290,7 @@ model.
 
 ## Privacy and trust
 
-Votive sends nothing anywhere. It has no server, no account, no analytics and no update
+Votive Dots sends nothing anywhere. It has no server, no account, no analytics and no update
 checks. You build it on your own Mac from this source, and a test (`tests/no-network.test.js`)
 fails if networking code is ever added to the app, the hooks or the MCP server.
 

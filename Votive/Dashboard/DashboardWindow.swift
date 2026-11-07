@@ -28,7 +28,7 @@ final class DashboardWindowController: NSObject, NSWindowDelegate {
         host.sizingOptions = []   // the window keeps the size you give it; it does not chase the content
         let w = NSWindow(contentViewController: host)
         w.styleMask = [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView]
-        w.title = "Votive"
+        w.title = "Votive Dots"
         w.toolbarStyle = .unified
         w.isReleasedWhenClosed = false
         w.setContentSize(NSSize(width: 1040, height: 700))
@@ -59,14 +59,14 @@ final class DashboardWindowController: NSObject, NSWindowDelegate {
 
         let appItem = NSMenuItem()
         let app = NSMenu()
-        app.addItem(withTitle: "About Votive", action: #selector(NSApplication.orderFrontStandardAboutPanel(_:)), keyEquivalent: "")
+        app.addItem(withTitle: "About Votive Dots", action: #selector(NSApplication.orderFrontStandardAboutPanel(_:)), keyEquivalent: "")
         app.addItem(.separator())
         let settings = NSMenuItem(title: "Settings…", action: #selector(openSettings), keyEquivalent: ",")
         settings.target = self
         app.addItem(settings)
         app.addItem(.separator())
-        app.addItem(withTitle: "Hide Votive", action: #selector(NSApplication.hide(_:)), keyEquivalent: "h")
-        app.addItem(withTitle: "Quit Votive", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        app.addItem(withTitle: "Hide Votive Dots", action: #selector(NSApplication.hide(_:)), keyEquivalent: "h")
+        app.addItem(withTitle: "Quit Votive Dots", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
         appItem.submenu = app
         main.addItem(appItem)
 

@@ -1,10 +1,10 @@
 # Architecture
 
-This document explains how Votive turns small JSON files on disk into the dots in your
+This document explains how Votive Dots turns small JSON files on disk into the dots in your
 menu bar: where the data comes from, how state is resolved, the concurrency model, and the
 on-disk file formats the hook scripts and the app agree on.
 
-Votive works with any agentic coding tool that can run a command on a lifecycle event.
+Votive Dots works with any agentic coding tool that can run a command on a lifecycle event.
 Each agent runs one shared hook script, which normalizes that agent's payload through a table
 of adapters and writes one file per session. Claude Code gets one extra input: its own live
 session registry, which the app reads directly.
@@ -91,7 +91,7 @@ flowchart TB
 | **Claude Code prompt history** | `~/.claude/history.jsonl` | Claude Code itself | — (`HistoryReader`) | Claude Code sessions only: the last prompt, for the recap line |
 | **Usage files** | `~/.votive/usage/{agent}.json` | the Claude Code status-line wrapper; the event script on a Codex turn end | `AgentUsage` ([Services/UsageStore.swift](../Votive/Services/UsageStore.swift)) | Plan-limit windows per agent (see [Plan usage](#plan-usage)) |
 
-Votive never writes inside `~/.claude/sessions/` or `history.jsonl`; both belong to Claude
+Votive Dots never writes inside `~/.claude/sessions/` or `history.jsonl`; both belong to Claude
 Code. Everything the app and its scripts write lives under `~/.votive/`. The app creates
 `events/` and `usage/` (mode `0700`) if they're missing
 ([StatusCoordinator.swift](../Votive/Services/StatusCoordinator.swift),
@@ -394,7 +394,7 @@ to **DialogAlerter** whenever the banner didn't actually go out:
   shows a small floating [`NotifyPanel`](../Votive/UI/NotifyPanel.swift) — needs no
   entitlement or authorization at all, so it is the delivery path that reliably reaches you
   regardless of signing. It's a native `NSPanel` with `.nonactivatingPanel` in its style mask:
-  the panel can become key (so its buttons and Escape/Return work) *without* activating Votive or moving focus away from whatever app you were actually using — the same mechanism
+  the panel can become key (so its buttons and Escape/Return work) *without* activating Votive Dots or moving focus away from whatever app you were actually using — the same mechanism
   Spotlight-style HUDs use. This replaced an earlier `osascript -e 'display dialog ...'`
   implementation, which — even with no explicit `tell ... to activate` — turned out to
   unavoidably steal focus anyway, since `display dialog` is a modal-style system alert by

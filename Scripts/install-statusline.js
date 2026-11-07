@@ -29,7 +29,7 @@ const isOurs = sl && typeof sl === 'object' && typeof sl.command === 'string'
     || sl.command.indexOf('agent-overlay-statusline.js') !== -1);   // the name before Votive
 
 if (remove) {
-  if (!isOurs) { console.log('statusLine is not the Votive wrapper; nothing to restore.'); process.exit(0); }
+  if (!isOurs) { console.log('statusLine is not the Votive Dots wrapper; nothing to restore.'); process.exit(0); }
   let saved;
   try { saved = JSON.parse(fs.readFileSync(wrappedPath, 'utf8')); }
   catch (e) {
@@ -60,7 +60,7 @@ const wrappable = sl === undefined || sl === null
       && (sl.type === undefined || sl.type === 'command'));
 if (!wrappable) {
   console.warn('Warning: statusLine in settings.json has an unexpected shape; not wrapping it. ' +
-    'Plan usage will not appear in Votive.');
+    'Plan usage will not appear in Votive Dots.');
   process.exit(0);
 }
 

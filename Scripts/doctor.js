@@ -138,6 +138,10 @@ function diagnose() {
     add('app-running', up, up ? 'The ' + UNIT + ' service is running' : 'The tray service is not running (systemctl --user status ' + UNIT + ').', fs.existsSync(lp.tray) ? 'app' : undefined);
     const enabled = systemctl('is-enabled', UNIT);
     add('login-item', enabled.ok, enabled.ok ? 'Starts at login (' + UNIT + ')' : 'The service is not enabled, so the tray will not start at login. Run: node Scripts/install-linux.js');
+    // The popup window is an optional helper that needs python3 with GTK 3.
+    const gtk = run('python3', ['-c', "import gi; gi.require_version('Gtk','3.0'); from gi.repository import Gtk"]);
+    if (gtk.ok) checks.push({ id: 'window', ok: true, detail: 'The Votive window can open (python3 with GTK 3)' });
+    else warn('window', 'The Votive window needs python3 with GTK 3: sudo apt install python3-gi gir1.2-gtk-3.0. The tray menu works without it.');
     // The tray needs a program that shows tray icons. GNOME ships none by default; say so rather than leave a silent tray.
     const host = run('busctl', ['--user', 'status', 'org.kde.StatusNotifierWatcher']);
     if (host.ok) checks.push({ id: 'tray-host', ok: true, detail: 'A tray host is running (org.kde.StatusNotifierWatcher)' });

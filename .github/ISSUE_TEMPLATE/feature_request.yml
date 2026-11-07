@@ -1,5 +1,5 @@
 name: Idea or feature request
-description: Something you wish Votive did
+description: Something you wish Votive Dots did
 labels: ["enhancement"]
 body:
   - type: textarea
@@ -12,7 +12,7 @@ body:
   - type: textarea
     id: idea
     attributes:
-      label: What would you like Votive to do?
+      label: What would you like Votive Dots to do?
   - type: textarea
     id: alternatives
     attributes:
@@ -20,4 +20,4 @@ body:
   - type: markdown
     attributes:
       value: |
-        Votive keeps two promises, so some ideas will be declined: it never sends data off your Mac (there is no network code), and agents cannot change your files or settings through it without your say-so.
+        Votive Dots keeps two promises, so some ideas will be declined: it never sends data off your Mac (there is no network code), and agents cannot change your files or settings through it without your say-so.

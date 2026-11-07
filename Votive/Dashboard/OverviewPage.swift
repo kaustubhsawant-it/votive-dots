@@ -16,7 +16,7 @@ struct OverviewPage: View {
                 Color.clear.frame(height: 200).listRowBackground(Color.clear)
             } else {
                 EmptyPage(title: "Nothing to show yet", symbol: "chart.xyaxis.line",
-                          message: "Votive learns from the plan limits your agents report. They appear after the next reply in Claude Code (claude.ai login) or the next turn in Codex.")
+                          message: "Votive Dots learns from the plan limits your agents report. They appear after the next reply in Claude Code (claude.ai login) or the next turn in Codex.")
             }
         }
     }

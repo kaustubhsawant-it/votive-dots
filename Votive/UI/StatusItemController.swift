@@ -511,7 +511,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
         }
 
         menu.addItem(.separator())
-        menu.addItem(actionItem("Open Votive…", symbol: "chart.line.uptrend.xyaxis", #selector(openDashboard), key: "d"))
+        menu.addItem(actionItem("Open Votive Dots…", symbol: "chart.line.uptrend.xyaxis", #selector(openDashboard), key: "d"))
         menu.addItem(caffeinateMenuItem())
         menu.addItem(snippetsMenuItem())
         if portToolsOn { menu.addItem(portsMenu.menuItem()) }
@@ -519,8 +519,8 @@ final class StatusItemController: NSObject, NSMenuDelegate {
 
         menu.addItem(.separator())
         menu.addItem(actionItem("Open ~/.votive", symbol: "folder", #selector(openSessionsDir)))
-        menu.addItem(actionItem("About Votive", symbol: "info.circle", #selector(showAbout)))
-        menu.addItem(actionItem("Quit Votive", symbol: "power", #selector(quit), key: "q"))
+        menu.addItem(actionItem("About Votive Dots", symbol: "info.circle", #selector(showAbout)))
+        menu.addItem(actionItem("Quit Votive Dots", symbol: "power", #selector(quit), key: "q"))
 
         // Session and usage rows are custom views: give them the menu's full width so their
         // content lines up with the native items (their autoresizing mask covers later resizes).
@@ -1111,7 +1111,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
         NSApp.activate(ignoringOtherApps: true)
         let alert = NSAlert()
         alert.icon = NSApp.applicationIconImage
-        alert.messageText = "Votive"
+        alert.messageText = "Votive Dots"
         alert.informativeText = """
         A small menu-bar utility that shows the live status of your AI coding-agent sessions \
         (Claude Code, Codex, Gemini CLI, Cursor, Copilot CLI and more) as colored dots — \

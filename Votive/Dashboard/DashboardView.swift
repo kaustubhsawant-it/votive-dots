@@ -18,7 +18,7 @@ struct DashboardView: View {
                 Section("Usage") {
                     ForEach(DashboardPage.usagePages) { p in Label(p.title, systemImage: p.symbol).tag(p) }
                 }
-                Section("Votive") {
+                Section("Votive Dots") {
                     ForEach(DashboardPage.settingsPages) { p in Label(p.title, systemImage: p.symbol).tag(p) }
                 }
             }

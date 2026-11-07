@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Builds the downloadable release: dist/Votive-<version>-mac.zip (the app, the scripts and an installer
+# Builds the downloadable release: dist/Votive-Dots-<version>-mac.zip (the app, the scripts and an installer
 # that needs only Node.js) and dist/SHA256SUMS.txt. Run it from a checkout. It builds a universal
 # (Apple Silicon and Intel) Release app, ad-hoc signed like every build here. It is NOT notarized: there is
 # no Apple Developer ID, so the installer, not a double-click, is the supported way to open it.
@@ -13,7 +13,7 @@ cd "$ROOT"
 VERSION=$(sed -n 's/.*MARKETING_VERSION: "\(.*\)"/\1/p' project.yml)
 [ -n "$VERSION" ] || { echo "Could not read the version from project.yml"; exit 1; }
 OUT="${VOTIVE_RELEASE_OUT:-$ROOT/dist}"
-NAME="Votive-$VERSION"
+NAME="Votive-Dots-$VERSION"
 WORK="$(mktemp -d)"
 STAGE="$WORK/$NAME"
 
@@ -40,10 +40,10 @@ cp -R "$APP" "$STAGE/Votive.app"
 cp -R Scripts "$STAGE/Scripts"
 cp mcp-server/index.js mcp-server/package.json mcp-server/package-lock.json "$STAGE/mcp-server/"
 cp README.md LICENSE PRIVACY.md SECURITY.md CHANGELOG.md "$STAGE/"
-[ -f docs/Votive-Quick-Guide.pdf ] && cp docs/Votive-Quick-Guide.pdf "$STAGE/docs/"
+[ -f docs/Votive-Dots-Quick-Guide.pdf ] && cp docs/Votive-Dots-Quick-Guide.pdf "$STAGE/docs/"
 [ -f docs/INSTALLATION.md ] && cp docs/INSTALLATION.md "$STAGE/docs/"
 cat > "$STAGE/INSTALL.txt" <<EOF
-Votive $VERSION for Mac
+Votive Dots $VERSION for Mac
 
 1. You need macOS 14 or newer and Node.js (brew install node, or nodejs.org).
 2. Open Terminal, go into this folder, and run:
@@ -53,7 +53,7 @@ Votive $VERSION for Mac
 3. Look at the right side of your menu bar.
 
 Do not double-click Votive.app. It is not notarized by Apple, so macOS will refuse it.
-The installer opens it the right way. The picture guide is in docs/Votive-Quick-Guide.pdf
+The installer opens it the right way. The picture guide is in docs/Votive-Dots-Quick-Guide.pdf
 EOF
 chmod +x "$STAGE"/Scripts/*.sh
 

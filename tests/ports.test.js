@@ -78,7 +78,7 @@ test('ports: lsof output, typed input and the stored list are parsed strictly', 
   assert.equal(out.cap, '24');
   assert.equal(out.system, 'true true false false');
   assert.equal(out.refuse.split(' ')[0].startsWith('That'), true);
-  assert.match(out.refuse, /core system process\. That is a core system process\. That is Votive itself\. Another user owns that program, so macOS would not allow it\. That port belongs to a running agent session\. Close the session from its terminal instead\. That is part of macOS\. ok$/);
+  assert.match(out.refuse, /core system process\. That is a core system process\. That is Votive Dots itself\. Another user owns that program, so macOS would not allow it\. That port belongs to a running agent session\. Close the session from its terminal instead\. That is part of macOS\. ok$/);
   assert.equal(out.title, '3000  ·  free | 3000  ·  node (pid 7) | 3000  ·  node (pid 7) +1');
   assert.equal(out.safe, 'abc 40');
   // Only loopback addresses count as "this Mac only"; one wildcard makes the whole program reachable.
@@ -86,7 +86,7 @@ test('ports: lsof output, typed input and the stored list are parsed strictly', 
   assert.equal(out.details, 'Program: ~/bin/node | Started in: ~/dev/app | Reachable from: this Mac only | Port 5173 is usually: Vite dev server | Status: paused (frozen, still holding the port)');
   assert.equal(out.open, 'Reachable from: other devices on your network too | srv  ·  all interfaces | 5173  ·  node  ·  this Mac only  ·  paused'.replace('srv  ·  all', '4242  ·  srv  ·  all').replace('Reachable from: other devices on your network too | ', 'Reachable from: other devices on your network too | '));
   assert.equal(out.tilde, '~/x /Users/mex/y /opt/a ~');
-  assert.equal(out.resume, 'ok | Another user owns that program, so macOS would not allow it. | That is Votive itself.');
+  assert.equal(out.resume, 'ok | Another user owns that program, so macOS would not allow it. | That is Votive Dots itself.');
   assert.equal(out.mine, 'true false false');
   assert.equal(out.path, '/a/bc nil nil 160');
   assert.equal(out.hints, 'Vite dev server | macOS AirPlay Receiver | nil');

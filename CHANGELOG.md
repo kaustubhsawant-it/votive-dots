@@ -1,7 +1,15 @@
 # Changelog
 
-All notable changes to Votive (called Agent Overlay until 2026-10-26) are documented here. Format loosely follows
+All notable changes to Votive Dots (called Votive until 2026-11, and Agent Overlay until 2026-10-26) are documented here. Format loosely follows
 [Keep a Changelog](https://keepachangelog.com/).
+
+## [1.8.2] — 2026-11-08
+
+### Changed
+- **New public name: Votive Dots.** The menu, window, alerts, docs, guide and download now say Votive Dots, and the
+  repository is now `kaustubhsawant-it/votive-dots` (the old address redirects). Nothing else changed in this release.
+  `Votive.app`, `~/.votive`, the bundle id, the `votive` MCP server, `votive-*.js` and the `VOTIVE_*` variables keep their
+  names, so an existing install updates in place with your settings and history.
 
 ## [1.8.1] — 2026-11-05
 

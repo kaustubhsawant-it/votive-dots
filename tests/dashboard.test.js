@@ -78,7 +78,7 @@ test('dashboard: every page has a sidebar entry and a detail view', () => {
 
 test('dashboard: the menu opens the window, and the menu-bar item stays the always-on part', () => {
   const ctl = code(read('Votive/UI/StatusItemController.swift'));
-  assert.match(ctl, /Open Votive…/);
+  assert.match(ctl, /Open Votive Dots…/);
   assert.match(ctl, /All Settings…/);
   assert.match(ctl, /DashboardWindowController\.shared\.show\(\)/);
   assert.match(ctl, /DashboardWindowController\.shared\.show\(page: \.general\)/);
