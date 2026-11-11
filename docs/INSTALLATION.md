@@ -15,6 +15,21 @@ internet" flag on the one app it copies, and keeps a copy of the MCP server and 
 `~/.votive/release/` (so you can delete the download folder). Check the zip with
 `shasum -a 256 -c SHA256SUMS.txt`. The steps below describe the source install.
 
+## Install on Linux
+
+Get `Votive-Dots-<version>-linux.tar.gz` from the [latest release](https://github.com/kaustubhsawant-it/votive-dots/releases/latest), then:
+
+```sh
+tar xzf Votive-Dots-<version>-linux.tar.gz && cd Votive-Dots-<version>-linux
+./linux/install.sh          # no root; installs a systemd user service
+node Scripts/doctor.js      # checks the install, the service and the tray host
+```
+
+It needs Node.js 18 or later (`sudo apt install nodejs`) and a desktop that shows tray icons (on GNOME, the AppIndicator extension, which Ubuntu
+switches on). It copies the tray program and the shared scripts into `~/.votive`, hooks the agents it finds, and starts `votive.service` for your user.
+Remove everything with `./linux/install.sh --remove`. `INSTALL.txt` in the download lists the optional packages (`wmctrl`/`xdotool`, `xclip`/`wl-clipboard`,
+`zenity`, `python3-gi gir1.2-gtk-3.0`) and what each switches on. It was tried on Ubuntu 24.04 GNOME only; the other desktops are untested.
+
 ## Install
 
 ```sh

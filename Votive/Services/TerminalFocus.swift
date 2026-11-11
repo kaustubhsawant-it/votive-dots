@@ -16,14 +16,24 @@ import Darwin
 enum TerminalFocus {
     private static let debug = ProcessInfo.processInfo.environment["VOTIVE_DEBUG"] == "1"
 
-    static func focus(sessionPID pid: Int32) {
+    /// `agent` and `cwd` are optional: for a Cursor session the window that has the session's workspace
+    /// folder open is raised too (all Cursor chats share one process, so the pid alone cannot pick a window).
+    static func focus(sessionPID pid: Int32, agent: String = "", cwd: String = "") {
         guard pid > 0 else { return }
         DispatchQueue.global(qos: .userInitiated).async {
             let chain = ancestry(from: pid, maxDepth: 30)
             let tty = ttyName(of: pid)
-            DispatchQueue.main.async { raise(chain: chain, tty: tty) }
+            DispatchQueue.main.async { raise(chain: chain, tty: tty, agent: agent, cwd: cwd) }
         }
     }
+
+    /// True when the folder should be handed to the host editor: a Cursor session only. Its cwd is the
+    /// workspace root Cursor reported, so the editor reuses the window that has it open. Other agents'
+    /// cwd may be a sub-folder, and handing that over would open a new window.
+    static func shouldOpenWorkspace(agent: String, bundle: String, cwd: String) -> Bool {
+        agent == "cursor" && bundle == cursorBundleID && cwd.hasPrefix("/")
+    }
+    static let cursorBundleID = "com.todesktop.230313mzl4w4u92"
 
     /// The GUI app (Terminal/iTerm/VSCode/…) hosting a given agent pid, for showing its icon.
     static func hostingApp(forPID pid: Int32) -> NSRunningApplication? {
@@ -33,7 +43,7 @@ enum TerminalFocus {
 
     // MARK: - Raise (main thread)
 
-    private static func raise(chain: [Int32], tty: String?) {
+    private static func raise(chain: [Int32], tty: String?, agent: String, cwd: String) {
         guard let app = hostingApp(in: chain) else {
             // iTerm2 runs sessions under a server process re-parented to launchd, so the
             // ancestry can miss it. With a tty we can still find the tab by asking iTerm2.
@@ -54,6 +64,11 @@ enum TerminalFocus {
             NSWorkspace.shared.openApplication(at: url, configuration: cfg, completionHandler: nil)
         }
         app.activate()
+
+        // 1b) Cursor: raise the window that has this session's folder open (plain folders only, see Reveal).
+        if shouldOpenWorkspace(agent: agent, bundle: bundle, cwd: cwd), let url = app.bundleURL {
+            Reveal.folder(cwd, inEditorAt: url)
+        }
 
         // 2) Best-effort exact-tab focus (needs one-time Automation permission).
         guard let tty = tty else { return }

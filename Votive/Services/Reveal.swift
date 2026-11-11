@@ -45,6 +45,18 @@ enum Reveal {
         perform(plan(forTranscript: raw))
     }
 
+    /// Opens a plain folder from a payload in ONE fixed editor (the app the caller already found running),
+    /// never in "whatever is default". Anything the plan does not call a plain folder (a file, an .app or
+    /// .pkg, a missing or relative path, a NUL) is refused, so nothing from a payload can be launched.
+    @discardableResult
+    static func folder(_ raw: String, inEditorAt app: URL) -> Bool {
+        guard case .openFolderWindow(let url) = plan(forFolder: raw) else { return false }
+        let cfg = NSWorkspace.OpenConfiguration()
+        cfg.activates = true
+        NSWorkspace.shared.open([url], withApplicationAt: app, configuration: cfg, completionHandler: nil)
+        return true
+    }
+
     private static func perform(_ plan: Plan) {
         switch plan {
         case .openFolderWindow(let url):

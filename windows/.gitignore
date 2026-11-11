@@ -1,1 +1,6 @@
 dist/
+# .NET and Visual Studio build output
+bin/
+obj/
+.vs/
+*.user

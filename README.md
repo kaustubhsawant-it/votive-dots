@@ -67,8 +67,9 @@ No Xcode needed. Details, the checksum and the build-from-source option are unde
 - Only to build from source: Xcode or the Xcode Command Line Tools, and
   [XcodeGen](https://github.com/yonaskolb/XcodeGen) (`brew install xcodegen`)
 
-> **Platform status.** macOS is the supported platform. The `windows/` folder is an early prototype that has
-> not been built or tested on a real PC yet; don't rely on it.
+> **Platform status.** macOS is the main platform. **Linux** (a system-tray program) is new in 1.9.0 and was tried on Ubuntu 24.04 GNOME
+> (X11 and Wayland) only; see [Linux](#linux). The `windows/` folder is an early prototype that has not been built or tested on a real PC yet;
+> don't rely on it.
 
 ## Install
 
@@ -322,6 +323,20 @@ node --test tests/*.test.js        # script tests (throwaway HOME, safe to run)
 
 See [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) for the project layout and conventions and
 [docs/INSTALLATION.md](docs/INSTALLATION.md) for troubleshooting.
+
+## Linux
+
+Votive Dots also runs on Linux as a system-tray program, with the same dots, usage, alerts, priority, snippets and a Votive Dots window.
+
+- Tried on **Ubuntu 24.04 (GNOME, X11 and Wayland)**. KDE, XFCE, Cinnamon, MATE, Fedora and Debian are not tested; any desktop that shows
+  StatusNotifier tray icons may work. On GNOME the AppIndicator extension must be on (Ubuntu switches it on).
+- Download `Votive-Dots-<version>-linux.tar.gz` from the [latest release](https://github.com/kaustubhsawant-it/votive-dots/releases/latest), unpack it and run
+  `./linux/install.sh` (needs Node.js 18 or later; no root; it runs as a systemd user service). Check it with `node Scripts/doctor.js`.
+  Remove it with `./linux/install.sh --remove`.
+- Optional packages switch single features on: `wmctrl` or `xdotool` (Go to terminal, X11 only), `xclip` or `wl-clipboard` (copy), `zenity`
+  (confirm Stop and Pause for ports), `python3-gi gir1.2-gtk-3.0` (the window; Ubuntu's desktop has them).
+- Wayland does not let one program raise another's window, so "Go to terminal" works on X11 only. Sounds were not tried on a machine with a sound card.
+- Nothing leaves your computer: no network code, the same privacy rules as the Mac app. Details: [linux/README.md](linux/README.md).
 
 ## Limitations
 

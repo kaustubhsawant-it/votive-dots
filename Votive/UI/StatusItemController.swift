@@ -399,7 +399,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
         if dialog, !delivered {
             let pid = s.pid
             DialogAlerter.shared.show(title: title, body: body,
-                openAction: pid > 0 ? { TerminalFocus.focus(sessionPID: pid) } : nil, replaceOldest: requested)
+                openAction: pid > 0 ? { TerminalFocus.focus(sessionPID: pid, agent: s.agent, cwd: s.cwd) } : nil, replaceOldest: requested)
         }
     }
 
@@ -780,7 +780,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
     func actionsMenu(for s: AgentSession) -> NSMenu {
         let menu = NSMenu()
         menu.autoenablesItems = false   // Move earlier / later are greyed by hand when there is nowhere to go
-        let ref = SessionRef(pid: s.pid, cwd: s.cwd, id: s.sessionId)
+        let ref = SessionRef(pid: s.pid, cwd: s.cwd, id: s.sessionId, agent: s.agent)
         if s.pid > 0 {
             addItem(menu, "Open terminal window", #selector(focusSession(_:)), ref, bold: true)
             menu.addItem(.separator())
@@ -887,7 +887,7 @@ final class StatusItemController: NSObject, NSMenuDelegate {
 
     @objc private func focusSession(_ sender: NSMenuItem) {
         guard let ref = sender.representedObject as? SessionRef else { return }
-        if ref.pid > 0 { TerminalFocus.focus(sessionPID: ref.pid) }
+        if ref.pid > 0 { TerminalFocus.focus(sessionPID: ref.pid, agent: ref.agent, cwd: ref.cwd) }
         else if !ref.cwd.isEmpty { Reveal.folder(ref.cwd) }
     }
 
@@ -1170,7 +1170,8 @@ private final class SessionRef {
     let pid: Int32
     let cwd: String
     let id: String
-    init(pid: Int32, cwd: String, id: String) { self.pid = pid; self.cwd = cwd; self.id = id }
+    let agent: String
+    init(pid: Int32, cwd: String, id: String, agent: String = "") { self.pid = pid; self.cwd = cwd; self.id = id; self.agent = agent }
 }
 
 private final class PinRef {

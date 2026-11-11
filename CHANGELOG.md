@@ -3,6 +3,20 @@
 All notable changes to Votive Dots (called Votive until 2026-11, and Agent Overlay until 2026-10-26) are documented here. Format loosely follows
 [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.9.0] — 2026-11-11
+
+### Added
+- **Votive Dots for Linux (first release).** A system-tray program for Ubuntu 24.04 (GNOME, X11 and Wayland) that shows one dot per agent
+  session from the same hook events as the Mac app. Download `Votive-Dots-<version>-linux.tar.gz`, unpack it and run `./linux/install.sh`
+  (needs Node.js 18 or later; it runs as a systemd user service). It has the Mac app's features: session rows with a prompt and age, plan usage,
+  alerts and sounds by the same rules, Keep awake, prompt snippets, high priority and dot order, Ports, the CPU heat warning, dot colour sets,
+  and a Votive Dots window with Overview, Forecast, Habits, History, Dot order, the settings pages and the insights card (it needs `python3-gi`
+  and `gir1.2-gtk-3.0`, which Ubuntu's desktop already has). Read `linux/README.md` for what was checked: it was tried on Ubuntu GNOME only.
+  KDE, XFCE, Cinnamon, MATE, Fedora and Debian are not tested. On GNOME's Wayland session "Go to terminal" cannot raise another app's window.
+- **Cursor: clicking a session raises its window.** Cursor runs every chat in one process, so a click only brought Cursor forward. For a Cursor
+  session the window that has the session's folder open now comes forward. Two chats in one folder still land on the same window: Cursor has no
+  documented way to open a specific chat. Cursor does not report "waiting for you", so that state does not show for it.
+
 ## [1.8.2] — 2026-11-08
 
 ### Changed

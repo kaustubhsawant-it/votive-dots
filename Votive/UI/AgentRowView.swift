@@ -107,7 +107,7 @@ final class AgentRowView: NSView {
     // Left-click anywhere on the row → focus that agent's terminal window.
     override func mouseUp(with event: NSEvent) {
         enclosingMenuItem?.menu?.cancelTracking()
-        if session.pid > 0 { TerminalFocus.focus(sessionPID: session.pid) }
+        if session.pid > 0 { TerminalFocus.focus(sessionPID: session.pid, agent: session.agent, cwd: session.cwd) }
         else if !session.cwd.isEmpty { Reveal.folder(session.cwd) }
     }
 }

@@ -262,7 +262,7 @@ test('mcp: bad argument shapes get a clear error, never a surprise action', { sk
     assert.ok(nul.result.isError, 'settings_set with nothing to change is an error that points at settings_get');
     assert.match(nul.result.content[0].text, /settings_get/);
     const get = await s.call('tools/call', { name: 'settings_get', arguments: {} });
-    assert.match(get.result.content[0].text, /Current Votive settings/);
+    assert.match(get.result.content[0].text, /Current Votive Dots settings/);
     const str = await s.call('tools/call', { name: 'settings_set', arguments: { changes: 'off' } });
     assert.ok(str.result.isError);
     const nulInt = await s.call('tools/call', { name: 'settings_set', arguments: { changes: { stuckThresholdMinutes: null } } });
